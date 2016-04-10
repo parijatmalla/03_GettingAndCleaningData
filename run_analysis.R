@@ -1,5 +1,5 @@
 ##
-## This script contains the submission for course procjects for the 
+## This script contains the submission for course procjects for the
 ## course 03_GettingAndCleaningData to generate a 'tidy' dataset .
 ## source("run_analysis.R")
 ## call function run_analysis() after sourcing the R script.
@@ -11,9 +11,10 @@
 ##     This functions checks if the data directory has all the data required to run the analysis.
 ##      If not present it will create the necessary directory and extract necessary data
 
-prepare_data<- function () {
+prepare_data <- function () {
   setwd(".")
-  zip_file_url <-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+  zip_file_url <-
+    "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
   uci_data_directory <- "./data/UCI HAR Dataset"
   uci_zipfile <- "./data/uci_dataset.zip"
   ## check if the data directory is present, if not present create it.
@@ -39,9 +40,10 @@ load_data <- function () {
     col.names = c("activity_id", "Activity"),
     colClasses = c("numeric", "character")
   )
- ##load features names 
-  features <- read.table("./data/UCI HAR Dataset/features.txt",
-          header = FALSE,
+  ##load features names
+  features <- read.table(
+    "./data/UCI HAR Dataset/features.txt",
+    header = FALSE,
     col.names = c("feature_id", "Feature"),
     colClasses = c("numeric", "character")
   )
@@ -52,31 +54,45 @@ load_data <- function () {
                           features[, 2], value = TRUE)
   
   ## load train data, set the column names and selecting the relevant columns from features data
-  train_data <- read.table("./data/UCI HAR Dataset/train/X_train.txt", header = FALSE)
+  train_data <-
+    read.table("./data/UCI HAR Dataset/train/X_train.txt", header = FALSE)
   names(train_data) <- features[, 2]
   ## subset the train_data with selected_labels
   train_data <- subset(train_data, select = selected_labels)
   ## load subject into train_data
   train_data$Subject <-
-    read.table("./data/UCI HAR Dataset/train/subject_train.txt",
-               header = FALSE,
-               col.names = "subject_id")[, 1]
+    read.table(
+      "./data/UCI HAR Dataset/train/subject_train.txt",
+      header = FALSE,
+      col.names = "subject_id"
+    )[, 1]
   ## load activity id to the train_data
-  train_data$activity_id <- read.table("./data/UCI HAR Dataset/train/y_train.txt",
-                                       header = FALSE,
-                                       col.names = "activity_id")[, 1]
+  train_data$activity_id <-
+    read.table(
+      "./data/UCI HAR Dataset/train/y_train.txt",
+      header = FALSE,
+      col.names = "activity_id"
+    )[, 1]
   
   
   ## load the test data, set the column names and selecting the relevant columns
-  test_data <- read.table("./data/UCI HAR Dataset/test/X_test.txt", header = FALSE)
+  test_data <-
+    read.table("./data/UCI HAR Dataset/test/X_test.txt", header = FALSE)
   names(test_data) <- features[, 2]
   test_data <- subset(test_data, select = selected_labels)
   
-  test_data$Subject <- read.table("./data/UCI HAR Dataset/test/subject_test.txt", header = FALSE,
-                                  col.names = "subject_id")[, 1]
-  test_data$activity_id <- read.table("./data/UCI HAR Dataset/test/y_test.txt",
-                                      header = FALSE,
-                                      col.names = "activity_id")[, 1]
+  test_data$Subject <-
+    read.table(
+      "./data/UCI HAR Dataset/test/subject_test.txt",
+      header = FALSE,
+      col.names = "subject_id"
+    )[, 1]
+  test_data$activity_id <-
+    read.table(
+      "./data/UCI HAR Dataset/test/y_test.txt",
+      header = FALSE,
+      col.names = "activity_id"
+    )[, 1]
   
   ## Bind the two datasets together and merge them with the
   ## labels frame, thus pulling in the descriptive names
@@ -88,39 +104,40 @@ load_data <- function () {
   ##merged_data$Activity <- factor(merged_data$Activity)
   
   ## order the data by subject id
-  sorted_merged_data <- merged_data[order(merged_data$Subject), ]
+  sorted_merged_data <- merged_data[order(merged_data$Subject),]
   ## return sorted merged data
-    sorted_merged_data
+  sorted_merged_data
 }
 
-#Clean up the variable Names 
+#Clean up the variable Names
 descriptive_names <- function (colNames) {
   # Cleaning up the variable names
-  for (i in 1:length(colNames)) 
+  for (i in 1:length(colNames))
   {
-    colNames[i] = gsub("\\()","",colNames[i])
-    colNames[i] = gsub("-std$","StdDev",colNames[i])
-    colNames[i] = gsub("-mean","Mean",colNames[i])
-    colNames[i] = gsub("^(t)","time",colNames[i])
-    colNames[i] = gsub("^(f)","freq",colNames[i])
-    colNames[i] = gsub("([Gg]ravity)","Gravity",colNames[i])
-    colNames[i] = gsub("([Bb]ody[Bb]ody|[Bb]ody)","Body",colNames[i])
-    colNames[i] = gsub("[Gg]yro","Gyro",colNames[i])
-    colNames[i] = gsub("AccMag","AccMagnitude",colNames[i])
-    colNames[i] = gsub("([Bb]odyaccjerkmag)","BodyAccJerkMagnitude",colNames[i])
-    colNames[i] = gsub("JerkMag","JerkMagnitude",colNames[i])
-    colNames[i] = gsub("GyroMag","GyroMagnitude",colNames[i])
+    colNames[i] = gsub("\\()", "", colNames[i])
+    colNames[i] = gsub("-std$", "StdDev", colNames[i])
+    colNames[i] = gsub("-mean", "Mean", colNames[i])
+    colNames[i] = gsub("^(t)", "time", colNames[i])
+    colNames[i] = gsub("^(f)", "freq", colNames[i])
+    colNames[i] = gsub("([Gg]ravity)", "Gravity", colNames[i])
+    colNames[i] = gsub("([Bb]ody[Bb]ody|[Bb]ody)", "Body", colNames[i])
+    colNames[i] = gsub("[Gg]yro", "Gyro", colNames[i])
+    colNames[i] = gsub("AccMag", "AccMagnitude", colNames[i])
+    colNames[i] = gsub("([Bb]odyaccjerkmag)", "BodyAccJerkMagnitude", colNames[i])
+    colNames[i] = gsub("JerkMag", "JerkMagnitude", colNames[i])
+    colNames[i] = gsub("GyroMag", "GyroMagnitude", colNames[i])
   }
-colNames
+  colNames
 }
 ## Generate a tidy dataset with the averages of the two variable types,
 ## sorted by the subject and the activity
 clean_data <- function (sorted_data) {
-  # Appropriately label the data set with descriptive activity names. 
+  # Appropriately label the data set with descriptive activity names.
   # Reassigning the new descriptive column names to the finalData set
   colnames(sorted_data) = descriptive_names(colnames(sorted_data))
   clean_data <- data.frame()
-  mean_std_labels <- grep("Mean|StdDev", colnames(sorted_data), value=TRUE)
+  mean_std_labels <-
+    grep("Mean|StdDev", colnames(sorted_data), value = TRUE)
   ## walk through the possible subject-activity combinations,
   ## taking the means of the columns.
   for (subject in unique(sorted_data$Subject)) {
@@ -129,14 +146,14 @@ clean_data <- function (sorted_data) {
                               "Activity" = activity)
       for (label in mean_std_labels) {
         data_slice <- sorted_data[sorted_data$Subject == subject &
-                                     sorted_data$Activity == activity, label]
+                                    sorted_data$Activity == activity, label]
         tmp_frame[[label]] <- mean(data_slice, na.rm = TRUE)
       }
       clean_data <- rbind(clean_data, tmp_frame)
     }
   }
   
-colnames(clean_data) <- c("Subject", c("Activity", mean_std_labels))
+  colnames(clean_data) <- c("Subject", c("Activity", mean_std_labels))
   
   clean_data
 }
@@ -146,14 +163,14 @@ save_data <- function (clean_data, file_name) {
   write.table(clean_data, file = file_name, row.names = FALSE)
 }
 
-  ## main function that starts the analaysis and writes the file 
-  ## ./data/tidy_uci_std_mean_average.txt
-  run_analysis <- function () {
-    tidy_file <- "./data/tidy_uci_std_mean_average.txt"
-    prepare_data()
-    sorted_data <- load_data()
-    tidy_data <- clean_data(sorted_data)
-    save_data(tidy_data,tidy_file)
-    message( paste("Tidy file saved at : " , tidy_file))
-    
-  }
+## main function that starts the analaysis and writes the file
+## ./data/tidy_uci_std_mean_average.txt
+run_analysis <- function () {
+  tidy_file <- "./data/tidy_uci_std_mean_average.txt"
+  prepare_data()
+  sorted_data <- load_data()
+  tidy_data <- clean_data(sorted_data)
+  save_data(tidy_data, tidy_file)
+  message(paste("Tidy file saved at : " , tidy_file))
+  
+}
