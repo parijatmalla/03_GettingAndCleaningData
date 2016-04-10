@@ -13,11 +13,10 @@ Triggere the analysis by calling the run_analysis function:
 
 **run_analysis()**
 
-__run_analysis()__ is the main function which call other helpful functions to download, extract, clean the data and write a tidy file. 
+__run_analysis()__ is the main function which call other helpful functions to download, extract, clean the data and write a tidy file.
 
-  
 
-#### Helper functions called by the run_analysis() internally are explained below:
+### Helper functions called by the run_analysis() internally are explained below:
 
 **prepare_data():** Checks presence of "data" folder  and UCI data set directory inside "data" folder". When these are not                    present it will create "data" folder downloads the zip from                      
                 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip" and extracts it   
