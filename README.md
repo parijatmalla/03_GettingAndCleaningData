@@ -36,6 +36,6 @@ __run_analysis()__ is the main function which call other helpful functions to do
               Return tidy data frame,  with subjectID, activity and all columns containing  Mean and StdDev (which are  
               descriptive_names for mean and std in input data.).
 
-**save_data(clean_data, file_name): ** Gets input clean dataset from clean_data() as clean_data and file name to save it 
+**save_data(clean_data, file_name):** Gets input clean dataset from clean_data() as clean_data and file name to save it 
                                 to as file_name and save the clean data frame using the write.table() function as asked 
                                 for by the project requirement.
