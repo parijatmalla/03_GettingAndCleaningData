@@ -42,6 +42,69 @@ The following files are available for the train and test data. Their description
 - 'train/Inertial Signals/body_acc_x_train.txt': The body acceleration signal obtained by subtracting the gravity from the total acceleration. 
 - 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
 
+### Code book: Output file details "./data/tidy_uci_std_mean_average.txt":
+Key Identifiers of output file "./data/tidy_uci_std_mean_average.txt"
+#### Each row is identified by 2 keys
+	Subject - The ID of the test subject
+	Activity - The type of activity performed when the corresponding measurements were taken
+
+#### Metrics and Measurements
+
+- "Subject"
+- "Activity"
+- "timeBodyAccMean-X"
+- "timeBodyAccMean-Y"
+- "timeBodyAccMean-Z"
+- "timeGravityAccMean-X"
+- "timeGravityAccMean-Y"
+- "timeGravityAccMean-Z"
+- "timeBodyAccJerkMean-X"
+- "timeBodyAccJerkMean-Y"
+- "timeBodyAccJerkMean-Z"
+- "timeBodyGyroMean-X"
+- "timeBodyGyroMean-Y"
+- "timeBodyGyroMean-Z"
+- "timeBodyGyroJerkMean-X"
+- "timeBodyGyroJerkMean-Y"
+- "timeBodyGyroJerkMean-Z"
+- "timeBodyAccMagnitudeMean"
+- "timeBodyAccMagnitudeStdDev"
+- "timeGravityAccMagnitudeMean"
+- "timeGravityAccMagnitudeStdDev"
+- "timeBodyAccJerkMagnitudeMean"
+- "timeBodyAccJerkMagnitudeStdDev"
+- "timeBodyGyroMagnitudeMean"
+- "timeBodyGyroMagnitudeStdDev"
+- "timeBodyGyroJerkMagnitudeMean"
+- "timeBodyGyroJerkMagnitudeStdDev"
+- "freqBodyAccMean-X"
+- "freqBodyAccMean-Y"
+- "freqBodyAccMean-Z"
+- "freqBodyAccJerkMean-X"
+- "freqBodyAccJerkMean-Y"
+- "freqBodyAccJerkMean-Z"
+- "freqBodyGyroMean-X"
+- "freqBodyGyroMean-Y"
+- "freqBodyGyroMean-Z"
+- "freqBodyAccMagnitudeMean"
+- "freqBodyAccMagnitudeStdDev"
+- "freqBodyAccJerkMagnitudeMean"
+- "freqBodyAccJerkMagnitudeStdDev"
+- "freqBodyGyroMagnitudeMean"
+- "freqBodyGyroMagnitudeStdDev"
+- "freqBodyGyroJerkMagnitudeMean"
+- "freqBodyGyroJerkMagnitudeStdDev"
+
+#### Activity Labels
+
+- WALKING (value 1): subject was walking during the test
+- WALKING_UPSTAIRS (value 2): subject was walking up a staircase during the test
+- WALKING_DOWNSTAIRS (value 3): subject was walking down a staircase during the test
+- SITTING (value 4): subject was sitting during the test
+- STANDING (value 5): subject was standing during the test
+- LAYING (value 6): subject was laying down during the test
+
+
 ### Summary Choices:
 
 #### Section 1. Merge the training and the test sets to create one data set.
