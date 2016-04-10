@@ -149,8 +149,11 @@ save_data <- function (clean_data, file_name) {
   ## main function that starts the analaysis and writes the file 
   ## ./data/tidy_uci_std_mean_average.txt
   run_analysis <- function () {
+    tidy_file <- "./data/tidy_uci_std_mean_average.txt"
     prepare_data()
     sorted_data <- load_data()
     tidy_data <- clean_data(sorted_data)
-    save_data(tidy_data,"./data/tidy_uci_std_mean_average.txt" )
+    save_data(tidy_data,tidy_file)
+    message( paste("Tidy file saved at : " , tidy_file))
+    
   }
