@@ -9,11 +9,12 @@ First of all source download and source run_analysis.R file in your R session:
 
 **source("run_analysis.R")**
 
-Triggere the analysis by calling the run_analysis function:
+Trigger the analysis by calling the run_analysis function:
 
 **run_analysis()**
 
 __run_analysis()__ is the main function which call other helpful functions to download, extract, clean the data and write a tidy file.
+"./data/tidy_uci_std_mean_average.txt"
 
 
 ### Helper functions called by the run_analysis() internally are explained below:
